@@ -60,7 +60,7 @@ public class ScreenCaptureService extends Service {
     }
 
     private void startCapture() {
-        imageReader = ImageReader.newInstance(width, height, android.graphics.ImageFormat.RGBA_8888, 2);
+        imageReader = ImageReader.newInstance(width, height, android.graphics.PixelFormat.RGBA_8888, 2);
         imageReader.setOnImageAvailableListener(reader -> {
             android.media.Image img = reader.acquireLatestImage();
             if (img != null) {
