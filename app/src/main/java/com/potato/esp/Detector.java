@@ -19,8 +19,10 @@ public class Detector {
     public Player[] detect(Bitmap frame) {
         Mat rgba = new Mat();
         Utils.bitmapToMat(frame, rgba);
+        Mat rgb = new Mat();
+        Imgproc.cvtColor(rgba, rgb, Imgproc.COLOR_RGBA2RGB);
         Mat hsv = new Mat();
-        Imgproc.cvtColor(rgba, hsv, Imgproc.COLOR_RGBA2HSV);
+        Imgproc.cvtColor(rgb, hsv, Imgproc.COLOR_RGB2HSV);
 
         // Red health bars (enemy)
         Mat redMask = new Mat();
