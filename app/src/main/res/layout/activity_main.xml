@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="#1a1a1a">
-    <Button
-        android:id="@+id/btn_start"
+    android:padding="24dp"
+    android:background="#1e1e1e">
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="ESP Overlay"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: Ready"
+        android:textColor="#4CAF50"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Start ESP Overlay"
-        android:textSize="22sp"
-        android:padding="20dp"
-        android:backgroundTint="#4CAF50" />
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="14dp"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop ESP Overlay"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:padding="14dp"
+        android:backgroundTint="#F44336"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How it works:\n• 1. Grant overlay permission when prompted.\n• 2. Tap Start and allow screen recording.\n• 3. Switch to your game. An 'ESP Active' badge will stay in the top corner and highlight ally (green) / enemy (red) health bars."
+        android:textColor="#B0BEC5"
+        android:textSize="13sp"
+        android:lineSpacingExtra="3dp" />
 </LinearLayout>
+

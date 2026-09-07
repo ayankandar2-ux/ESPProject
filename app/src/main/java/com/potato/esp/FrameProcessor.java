@@ -1,24 +1,28 @@
 package com.potato.esp;
 
 import android.content.Context;
-import android.graphics.Bitmap;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
 import java.nio.ByteBuffer;
 
 public class FrameProcessor {
-    private Detector detector;
-    private Bitmap cacheBitmap;
+    private final Detector detector;
 
     public FrameProcessor(Context context) {
-        detector = new Detector();
-        cacheBitmap = Bitmap.createBitmap(1080, 2340, Bitmap.Config.ARGB_8888);
+        this.detector = new Detector();
     }
 
-    public Detector.Player[] processFrame(byte[] rgbaData, int w, int h) {
-        if (cacheBitmap.getWidth() != w || cacheBitmap.getHeight() != h) {
-            cacheBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+    public Detector.Player[] processFrame(ByteBuffer buffer, int width, int height, int pixelStride, int rowStride) {
+        if (buffer == null) return new Detector.Player[0];
+        try {
+            buffer.position(0);
+            Mat rawMat = new Mat(height, width, CvType.CV_8UC4, buffer, rowStride);
+            Detector.Player[] players = detector.detectMat(rawMat);
+            rawMat.release();
+            return players;
+        } catch (Throwable t) {
+            return new Detector.Player[0];
         }
-        ByteBuffer buffer = ByteBuffer.wrap(rgbaData);
-        cacheBitmap.copyPixelsFromBuffer(buffer);
-        return detector.detect(cacheBitmap);
     }
 }
+
